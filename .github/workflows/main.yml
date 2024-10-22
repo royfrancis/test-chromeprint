@@ -21,7 +21,7 @@ jobs:
           docker run --rm -u $(id -u ${USER}):$(id -g ${USER}) -v ${PWD}:/rmd ${{ env.REGISTRY }}/${{ env.ORG }}/${{ env.IMAGE }} Rscript -e 'rmarkdown::render("index.Rmd")'
 
           echo "Generating PDFs using pagedown ..."
-          docker run --rm -u $(id -u ${USER}):$(id -g ${USER}) -v ${PWD}:/rmd ${{ env.REGISTRY }}/${{ env.ORG }}/${{ env.IMAGE }} Rscript -e "pagedown::chrome_print('index.html',extra_args=c('--no-sandbox','--disable-dev-shm-usage','--disable-gpu'));"
+          docker run --rm -u $(id -u ${USER}):$(id -g ${USER}) -v ${PWD}:/rmd ${{ env.REGISTRY }}/${{ env.ORG }}/${{ env.IMAGE }} Rscript -e "pagedown::chrome_print('index.html',extra_args=c('--no-sandbox','--disable-dev-shm-usage','--disable-gpu'), verbose = 1);"
 
           # echo "Generating PDFs using decktape ..."
           # docker run --rm -u "$(id -u "${USER}"):$(id -g "${USER}")" -v "${PWD}:/slides" astefanutti/decktape:3.12.0 "/slides/index.html" "/slides/index.pdf" --chrome-arg=--no-sandbox --chrome-arg=--disable-dev-shm-usage --chrome-arg=--disable-gpu
