@@ -1,0 +1,27 @@
+name: build
+on:
+  workflow_dispatch:
+  pull_request:
+  push:
+
+env:
+  REGISTRY: ghcr.io
+  ORG: royfrancis
+  IMAGE: test-chromeprint:v1
+
+jobs:
+  rmd-render-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Build HTML and PDF
+        run: |
+          echo "Rendering Rmd files ..."
+          docker run --rm -u $(id -u ${USER}):$(id -g ${USER}) -v ${PWD}:/rmd ${{ env.REGISTRY }}/${{ env.ORG }}/${{ env.IMAGE }} Rscript -e 'rmarkdown::render("index.Rmd")'
+
+          echo "Generating PDFs using pagedown ..."
+          docker run --rm -u $(id -u ${USER}):$(id -g ${USER}) -v ${PWD}:/rmd ${{ env.REGISTRY }}/${{ env.ORG }}/${{ env.IMAGE }} Rscript -e "pagedown::chrome_print('index.html',extra_args=c('--no-sandbox','--disable-dev-shm-usage','--disable-gpu'));"
+
+          # echo "Generating PDFs using decktape ..."
+          # docker run --rm -u "$(id -u "${USER}"):$(id -g "${USER}")" -v "${PWD}:/slides" astefanutti/decktape:3.12.0 "/slides/index.html" "/slides/index.pdf" --chrome-arg=--no-sandbox --chrome-arg=--disable-dev-shm-usage --chrome-arg=--disable-gpu

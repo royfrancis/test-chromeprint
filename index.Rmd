@@ -1,0 +1,14 @@
+---
+title: "Test chromeprint"
+output: xaringan::moon_reader
+---
+
+## Slide 1
+
+Some content
+
+---
+
+## Slide 2
+
+More contents
