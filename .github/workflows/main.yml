@@ -7,7 +7,7 @@ on:
 env:
   REGISTRY: ghcr.io
   ORG: royfrancis
-  IMAGE: test-chromeprint:v1
+  IMAGE: test-chromeprint:v2
 
 jobs:
   rmd-render-job:

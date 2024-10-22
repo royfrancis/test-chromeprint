@@ -6,6 +6,6 @@ RUN apt-get update -y \
   && apt-get install -y ./google-chrome-stable_current_amd64.deb \
   && rm -rf google-chrome-stable_current_amd64.deb \
   && rm -rf /var/lib/apt/lists/* \
-  && Rscript -e 'install.packages(c("pagedown"),repos = "https://packagemanager.posit.co/cran/__linux__/jammy/latest");'
+  && Rscript -e 'install.packages(c("pagedown","websocket"),repos = "https://packagemanager.posit.co/cran/__linux__/jammy/latest");'
 
 WORKDIR /rmd
