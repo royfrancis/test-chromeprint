@@ -8,8 +8,8 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: royfrancis
-  IMAGE_TAG: v3
+  ORG: royfrancis
+  IMAGE: test-chromeprint:v3
 
 
 jobs:
@@ -43,7 +43,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@96383f45573cb7f253c731d3b3ab81c87ef81934 # v5.0.0
         with:
-          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          images: ${{ env.REGISTRY }}/${{ env.ORG }}
 
       - name: Build and push Docker image
         id: build-and-push
@@ -51,7 +51,7 @@ jobs:
         with:
           context: .
           file: Dockerfile
-          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}
+          tags: ${{ env.REGISTRY }}/${{ env.ORG }}:${{ env.IMAGE }}
           labels: ${{ steps.meta.outputs.labels }}
           push: true
 
