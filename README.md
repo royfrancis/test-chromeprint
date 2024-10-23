@@ -7,7 +7,7 @@ docker build --platform=linux/amd64 -t ghcr.io/royfrancis/test-chromeprint:v1 .
 docker push ghcr.io/royfrancis/test-chromeprint:v1
 ```
 
-COnvert RMD to HTML
+Convert RMD to HTML
 
 ```bash
 # render rmd to html

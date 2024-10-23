@@ -17,6 +17,11 @@ jobs:
         uses: actions/checkout@v3
       - name: Build HTML and PDF
         run: |
+          echo "System info"
+          lsb_release -a
+          uname -a
+          docker --version
+
           echo "Rendering Rmd files ..."
           docker run --rm -u $(id -u ${USER}):$(id -g ${USER}) -v ${PWD}:/rmd ${{ env.REGISTRY }}/${{ env.ORG }}/${{ env.IMAGE }} Rscript -e 'rmarkdown::render("index.Rmd")'
 
