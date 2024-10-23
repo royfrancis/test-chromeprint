@@ -9,3 +9,4 @@ RUN apt-get update -y \
   && Rscript -e 'install.packages(c("pagedown"),repos = "https://packagemanager.posit.co/cran/__linux__/jammy/latest");'
 
 WORKDIR /rmd
+
