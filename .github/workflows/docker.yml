@@ -1,9 +1,7 @@
-name: Site
+name: docker
 
 on:
   push:
-    branches: 
-      - "master"
     paths:
       - "Dockerfile"
   workflow_dispatch:
