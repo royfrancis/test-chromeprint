@@ -4,11 +4,11 @@ on:
   push:
     paths:
       - "Dockerfile"
-    tags: ['v*.*.*']
+    tags: '*'
   workflow_dispatch:
     paths:
       - "Dockerfile"
-    tags: ['v*.*.*']
+    tags: '*'
 
 env:
   REGISTRY: ghcr.io
