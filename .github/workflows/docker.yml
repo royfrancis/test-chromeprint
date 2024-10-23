@@ -6,6 +6,9 @@ on:
       - "Dockerfile"
     tags: ['v*.*.*']
   workflow_dispatch:
+    paths:
+      - "Dockerfile"
+    tags: ['v*.*.*']
 
 env:
   REGISTRY: ghcr.io
