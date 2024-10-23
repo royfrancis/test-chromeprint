@@ -10,7 +10,7 @@ on:
 env:
   REGISTRY: ghcr.io
   ORG: royfrancis
-  IMAGE: ${{ github.repository }}
+  IMAGE: test-chromeprint
 
 jobs:
   docker:
@@ -38,7 +38,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@96383f45573cb7f253c731d3b3ab81c87ef81934 # v5.0.0
         with:
-          images: ${{ env.REGISTRY }}/${{ env.ORG }}
+          images: ${{ env.REGISTRY }}/${{ env.ORG }}/${{ env.IMAGE }}
 
       - name: Build and push Docker image
         id: build-and-push
@@ -51,3 +51,4 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
           push: true
+          platforms: linux/amd64
